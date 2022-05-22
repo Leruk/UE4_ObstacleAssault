@@ -22,17 +22,25 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Components")
 	UStaticMeshComponent* StaticMeshComp;
 
-	UPROPERTY(EditAnywhere, Category = "Movement")
-	FVector Velocity;
-
-	UPROPERTY(EditAnywhere, Category = "Movement")
-	float MoveDistance;
-
 public:	
 	virtual void Tick(float DeltaTime) override;
 
 private:
 
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		FVector MoveVelocity;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+		float MoveDistance;
+
+	UPROPERTY(EditAnywhere, Category = "Rotation")
+		FRotator RotationVelocity;
+
 	FVector StartLocation;
-	FVector CurrentLocation;
+
+	void MovingPlatform(float DeltaTime);
+	void RotatePlatform(float DeltaTime);
+
+	bool CanReturn();
+	float GetDistanceMoved();
 };
